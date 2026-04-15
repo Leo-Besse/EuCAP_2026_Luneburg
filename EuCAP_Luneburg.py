@@ -4,7 +4,7 @@ from export_stl import to_stl
 import numpy as np
 
 def true_gradient(domain, gradient_function):
-    """A small workaround for the behaviour of the gradient function in LisbonTPMS (see note in readme)"""
+    """A small workaround for the behaviour of the gradient function in LisbonTPMS (see note at bottom of this script)"""
     initial_val = np.min(gradient_function(domain[0], domain[1], domain[2]))
     final_val = np.max(gradient_function(domain[0], domain[1], domain[2]))
     return gradient(domain, initial_val, final_val, gradient_function)
@@ -172,3 +172,31 @@ if __name__ == "__main__":
 
     SG.im_visualize(save_fig=False) # Visualize the TPMS structure (requires openGL)
     # to_stl(SG, name="EUCAP_Optimized_LL_minus") # Write to .stl file in current directory
+
+
+
+
+
+
+"""
+Note: On the true_gradient function
+
+By default, the gradient function in LisbonTPMS takes 4 inputs;
+
+    gradient(domain, initial_value, final_value, gradient_function)
+
+Here, initial_value and final_value are the upper and lower bounds for the half-thickness of the gyroid. 
+The gradient_function is then scaled to these limits. 
+
+However, this poses a problem, as the gradient function is applied to the whole cubic domain, 
+including points which are outside of the final spherical lens.
+
+To deal with this issue, we define a new true_gradient function, which only takes two inputs;
+
+    true_gradient(domain, gradient_function)
+
+This function directly applies the output of the gradient function as the half-thickness. 
+The user should be careful that the output of this function is between ~0.2 to 1.5 everywhere in the intended domain
+(as those are the limits for the gyroid half-thickness. Well, at least, 1.5 is; the lower bound depends how thin you can make the walls.)
+
+"""
