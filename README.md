@@ -4,9 +4,9 @@ Paper: "Fourier Series-Based Optimization of Gradient Index Lens Permittivity Pr
 
 ## Requirements
 
-This code is built on [LisbonTPMS](https://github.com/JorgeESantos/LisbonTPMS-tool), with a minor modification (see note below).
+This code is built on [LisbonTPMS](https://github.com/JorgeESantos/LisbonTPMS-tool).
 
-This library works for Python 3.10 up to 3.12, and is dependent Numpy, Scipy, scikit-image, PoreSpy and PyVista. See the [LisbonTPMS](https://github.com/JorgeESantos/LisbonTPMS-tool) repository for further details.
+This library works for Python 3.10 up to 3.12 and is dependent Numpy, Scipy, scikit-image, PoreSpy and PyVista. See the [LisbonTPMS](https://github.com/JorgeESantos/LisbonTPMS-tool) repository for further details.
 
 ## Usage
 

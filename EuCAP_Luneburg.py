@@ -10,10 +10,10 @@ def true_gradient(domain, gradient_function):
     return gradient(domain, initial_val, final_val, gradient_function)
 
 def inverse_MG(target, PLA, air):
-    """Returns volume fraction of air given a target permittivity, according to the Maxwell Garnett approximation for air inclusions in a PLA matrix"""
+    """Returns volume fraction of PLA given a target permittivity, according to the Maxwell Garnett approximation for air inclusions in a PLA matrix"""
     A = (target-PLA) / (target+2*PLA)
     B = (air-PLA) / (air+2*PLA)
-    return A/B
+    return 1 - (A/B)
 
 def t_SHG(rho):
     """Quadratic fit relating the half-thickness of the gyroid t with the volume fraction rho (determined empirically)"""
@@ -44,7 +44,7 @@ def MG_luneburg():
     eps_PLA = 2.55
 
     eps = true_gradient(SG.domain, luneburg)
-    delta = 1-inverse_MG(eps, eps_PLA, eps_air)
+    delta = inverse_MG(eps, eps_PLA, eps_air)
     c_grad = t_SHG(delta)
 
     #Apply it
@@ -145,7 +145,7 @@ def main():
     eps_PLA = 2.55
 
     eps = true_gradient(SG.domain, Fourier_grad_function)
-    delta = 1-inverse_MG(eps, eps_PLA, eps_air)
+    delta = inverse_MG(eps, eps_PLA, eps_air)
     c_grad = t_SHG(delta)
     SG.level_set(c=c_grad)
 
@@ -172,9 +172,6 @@ if __name__ == "__main__":
 
     SG.im_visualize(save_fig=False) # Visualize the TPMS structure (requires openGL)
     # to_stl(SG, name="EUCAP_Optimized_LL_minus") # Write to .stl file in current directory
-
-
-
 
 
 
