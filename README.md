@@ -1,6 +1,8 @@
 # EuCAP_2026_Luneburg
 
-Paper: "Fourier Series-Based Optimization of Gradient Index Lens Permittivity Profiles Within Manufacturing Limits", presented at the 2026 20th European Conference on Antennas and Propagation (EuCAP). 
+Paper: "_Fourier Series-Based Optimization of Gradient Index Lens Permittivity Profiles Within Manufacturing Limits_", presented at the 2026 20th European Conference on Antennas and Propagation (EuCAP). 
+
+Note that this code is only provided for convenience & has not been peer reviewed.
 
 ## Requirements
 
@@ -10,10 +12,13 @@ This library works for Python 3.10 up to 3.12 and is dependent Numpy, Scipy, sci
 
 ## Usage
 
-Create a virtual environment and install LisbonTPMS by running the following in a terminal:
+Create a virtual environment and activate it by running the following in a terminal:
 
     python -m venv .venv
     source .venv/bin/activate   # on Windows: .venv\Scripts\activate
+
+LisbonTPMS can then be installed by running:
+
     pip install -r requirements.txt
 
 After this, the TPMS Luneburg lens can be synthesized by running the **EuCAP_Luneburg.py** script.
